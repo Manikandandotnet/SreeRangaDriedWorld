@@ -1,0 +1,106 @@
+﻿@model IEnumerable<DryFruitSelling.Models.ReportingModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<div class="p-3 mb-2 bg-secondary text-white text-center mt-5 mb-5">
+    Reporting Record Details
+
+</div>
+
+<p>
+    @Html.ActionLink("Go To Index", "Index")
+</p>
+
+
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="offset-5 text-dark mb-5">
+        <div class="form-group">
+            <label for="Search">Search Reporting and Analytics Details</label>
+            <input type="search" class="form-control" name="Search" placeholder="Search Reporting Details" />
+        </div>
+
+
+        <div class="form-group mt-2">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-success" />
+            </div>
+
+
+        </div>
+
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneratedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataRange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneratedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportName)
+            </td>
+            <td>
+
+
+                @item.GeneratedDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataRange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneratedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+            </td>
+        </tr>
+    }
+
+</table>

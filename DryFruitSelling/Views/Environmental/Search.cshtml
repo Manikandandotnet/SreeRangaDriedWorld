@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DryFruitSelling.Models.EnvironmentalModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<div class="p-3 mb-2 bg-secondary text-white text-center mt-5 mb-5">
+    Environmental Record Details
+
+</div>
+
+<p>
+    @Html.ActionLink("Go To Index", "Index")
+</p>
+
+
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="offset-5 text-dark mb-5">
+        <div class="form-group">
+            <label for="Search">Search Environmental Details</label>
+            <input type="search" class="form-control" name="Search" placeholder="Search Environmental Details" />
+        </div>
+
+
+        <div class="form-group mt-2">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-success" />
+            </div>
+
+
+        </div>
+
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SustainabilityPracticeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PracticeDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImplementationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Impact)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SustainabilityPracticeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PracticeDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImplementationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Impact)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+            </td>
+        </tr>
+    }
+
+</table>

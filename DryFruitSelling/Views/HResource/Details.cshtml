@@ -1,0 +1,88 @@
+﻿@model DryFruitSelling.Models.HResource
+<main class="flex-shrink-0">
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-circle"></i></div>
+
+
+                    <h1 class="fw-bolder"> Human Resource Details</h1>
+
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+
+                        <div>
+
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EmployeeID)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.EmployeeID)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EmployeeName)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.EmployeeName)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Position)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Position)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.HireDate)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.HireDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Salary)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Salary)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.PerformanceRating)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.PerformanceRating)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Attendance)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Attendance)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

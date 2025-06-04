@@ -1,0 +1,78 @@
+﻿@model DryFruitSelling.Models.Supplier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<main class="flex-shrink-0">
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-circle"></i></div>
+
+
+                    <h1 class="fw-bolder">Supplier Details</h1>
+
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+
+                        <div>
+                            <dl class="dl-horizontal">
+
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SupplierID)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SupplierID)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SupplierName)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SupplierName)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ContactNumber)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ContactNumber)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Address)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.OrderHistory)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.OrderHistory)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

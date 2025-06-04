@@ -1,0 +1,386 @@
+﻿
+@{
+    ViewBag.Title = "UserPage";
+}
+
+
+
+<section>
+
+    <center class="mt-5 mb-5">
+        <h2 style="color:chocolate">Welcome To Employee Controls</h2>
+    </center>
+
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem;color:ghostwhite">
+
+                    <div class="card-body" style="background-color: rgb(192, 78, 237) ">
+                        <h5 class="card-title">Customer Information Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Customer Details", "Index", "Customer", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Customer Support Management Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Customer Support Info", "Index", "CustSupport", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Development And Research Management Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Development And Research", "Index", "DResearch", new { area = "" }, new { @class = "btn btn-primary" })
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+    @*2nd Row Container*@
+
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Ecomarce Management Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Ecommerce Info", "Index", "ECommerce", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title"> Environment Analyses Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Environment Info", "Index", "Environmental", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Financial Management Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Financial Info", "Index", "Finance", new { area = "" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+    @*3rd  Row Container*@
+
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Human Resources Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("H R Details", "Index", "HResource", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+                    @*<img src="~/Content/img/subject.jpg" class="card-img-top" alt="...">*@
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title"> Inventory System Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Inventory Info", "Index", "Inventory", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Logistics System Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Logistics Info", "Index", "Logistics", new { area = "" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+    @*4th  Row Container*@
+
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Marketing Management System Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Marketing Management ", "Index", "Marketing", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title"> Production Management Information</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Production Info", "Index", "Production", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Quality Checking Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Quality Checking Info", "Index", "Quality", new { area = "" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Get In Touch  Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Contact us Info", "Index", "QuickContact", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title"> Registered User Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Register Info", "Index", "Register", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Production Sales Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Sales Info", "Index", "Sales", new { area = "" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Supplier Relationship Details</h5>
+
+
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Relationship Info", "Index", "SRelationShip", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Production Supplier  Details</h5>
+                        @*linkName   ActionName    Controller*@
+                        @Html.ActionLink("Supplier Info", "Index", "Supplier", new { area = "" }, new { @class = "btn btn-primary" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--<div class="col">
+
+                <div class="card" style="width: 18rem; color: ghostwhite">
+
+                    <div class="card-body" style="background-color:rgb(192, 78, 237)">
+                        <h5 class="card-title">Event Information Details</h5>-->
+                        @*linkName   ActionName    Controller*@
+                        <!--@Html.ActionLink("Sales Info", "Index", "Sales", new { area = "" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>-->
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+</section>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DryFruitSelling.Models.SalesModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (TempData["Success"] != null)
+{
+    <script>alert("@TempData["Success"]")</script>
+}
+
+
+
+
+@if (TempData["Error"] != null)
+{
+    <script>alert("@TempData["Error"]")</script>
+}
+
+
+<div class="p-3 mb-2 bg-secondary text-white text-center mt-5 mb-5">
+   Production Sales Record Details
+
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    @Html.ActionLink("Search", "Search")
+
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SaleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FruitType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaleDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Revenue)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FruitType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.SaleDate)*@
+                @item.SaleDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Revenue)
+            </td>
+            <td>
+
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+
+                    @using (Html.BeginForm("Edit", "Sales", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-warning" type="submit">Edit</button>
+                    }
+
+                    &nbsp;
+
+                    @using (Html.BeginForm("Details", "Sales", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-primary" type="submit">Details</button>
+                    }
+
+                    &nbsp;
+
+                    @using (Html.BeginForm("Delete", "Sales", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    }
+
+
+
+
+                </div>
+
+            </td>
+        </tr>
+    }
+
+</table>

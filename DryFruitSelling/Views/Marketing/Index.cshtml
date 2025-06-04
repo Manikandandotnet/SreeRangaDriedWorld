@@ -1,0 +1,115 @@
+﻿@model IEnumerable<DryFruitSelling.Models.MarketingModel>
+
+
+
+@if (TempData["Success"] != null)
+{
+    <script>alert("@TempData["Success"]")</script>
+}
+
+
+
+
+@if (TempData["Error"] != null)
+{
+    <script>alert("@TempData["Error"]")</script>
+}
+
+
+<div class="p-3 mb-2 bg-secondary text-white text-center mt-5 mb-5">
+    Marketing Record Details
+
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    @Html.ActionLink("Search", "Search")
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Outcome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.StartDate)*@
+
+                @item.StartDate.ToString("dd/MM/yyyy")
+
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.EndDate)*@
+
+                @item.EndDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Budget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Outcome)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+
+                    @using (Html.BeginForm("Edit", "Marketing", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-warning" type="submit">Edit</button>
+                    }
+
+                    &nbsp;
+
+                    @using (Html.BeginForm("Details", "Marketing", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-primary" type="submit">Details</button>
+                    }
+
+                    &nbsp;
+
+                    @using (Html.BeginForm("Delete", "Marketing", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    }
+
+
+
+
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

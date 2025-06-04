@@ -1,0 +1,115 @@
+﻿@model IEnumerable<DryFruitSelling.Models.ReportingModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (TempData["Success"] != null)
+{
+    <script>alert("@TempData["Success"]")</script>
+}
+
+
+
+
+@if (TempData["Error"] != null)
+{
+    <script>alert("@TempData["Error"]")</script>
+}
+
+
+<div class="p-3 mb-2 bg-secondary text-white text-center mt-5 mb-5">
+    Reporting Record Details
+
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    @Html.ActionLink("Search", "Search")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneratedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataRange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneratedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneratedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataRange)
+            </td>
+            <td>
+                @item.GeneratedDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+
+                    @using (Html.BeginForm("Edit", "Reporting", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-warning" type="submit">Edit</button>
+                    }
+
+                    &nbsp;
+
+                    @using (Html.BeginForm("Details", "Reporting", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-primary" type="submit">Details</button>
+                    }
+
+                    &nbsp;
+
+                    @using (Html.BeginForm("Delete", "Reporting", new { id = item.id }, FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    }
+
+
+
+
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

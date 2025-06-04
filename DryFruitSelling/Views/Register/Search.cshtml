@@ -1,0 +1,105 @@
+﻿@model IEnumerable<DryFruitSelling.Models.Register>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<!-- Page Title -->
+
+<div class="p-3 mb-2 bg-secondary text-white text-center mt-5 mb-5">
+    Registered User's Record Details
+
+</div>
+
+<p>
+    @Html.ActionLink("Go To Index", "Index")
+</p>
+
+
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="offset-5 text-dark mb-5">
+        <div class="form-group">
+            <label for="Search">Search Registered User Details</label>
+            <input type="search" class="form-control" name="Search" placeholder="Search Registered User Details" />
+        </div>
+
+
+        <div class="form-group mt-2">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-success" />
+            </div>
+
+
+        </div>
+
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+@*                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+            </td>
+        </tr>
+    }
+
+</table>

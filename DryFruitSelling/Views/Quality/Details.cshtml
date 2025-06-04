@@ -1,0 +1,80 @@
+﻿@model DryFruitSelling.Models.QualityModel
+
+<main class="flex-shrink-0">
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-circle"></i></div>
+
+
+                    <h1 class="fw-bolder">Quality Checking Details</h1>
+
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+
+                        <div>
+
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.QualityCheckID)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.QualityCheckID)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ProductionID)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ProductionID)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.InspectionDate)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.InspectionDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.InspectorName)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.InspectorName)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.InspectionOutcome)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.InspectionOutcome)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Comments)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Comments)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,127 @@
+﻿@model DryFruitSelling.Models.Register
+
+@{
+    ViewBag.Title = "UserLogin";
+}
+
+
+
+@if (TempData["Success"] != null)
+{
+    <script>alert("@TempData["Success"]")</script>
+}
+
+
+
+@if (TempData["Error"] != null)
+{
+    <script>alert("@TempData["Error"]")</script>
+}
+
+
+
+
+<main class="flex-shrink-0">
+
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-circle"></i></div>
+                    <h1 class="fw-bolder">Login User</h1>
+                    <p class="lead fw-normal text-muted mb-0">We'd love to hear from you</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+
+
+
+
+
+
+
+
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                              
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group mt-3 mb-2">
+                                    @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-2">
+                                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group mb-2">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.CPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-3 mb-2">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Login" class="btn btn-danger" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+                        <div class="mt-3">
+                            If you're New user?
+                            @Html.ActionLink("Register", "RegisteredUser")
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

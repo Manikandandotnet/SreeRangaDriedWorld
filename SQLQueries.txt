@@ -1,0 +1,2105 @@
+
+
+CREATE DATABASE DryFruits
+
+USE DryFruits
+
+
+--------------------------------------------------------------
+    ---1. Supplier Management
+--------------------------------------------------------------
+
+CREATE TABLE tbl_supplier
+(
+id INT IDENTITY(1,1)PRIMARY KEY,
+SupplierID VARCHAR(255),          
+SupplierName VARCHAR(255), 
+ContactNumber VARCHAR(15),
+Address   VARCHAR(255),
+OrderHistory TEXT
+)
+
+-------------------------------------------------------------
+--- user stored procedure tbl_supplier
+-----------------------------------------------------------------
+
+
+---INSERT DATA
+CREATE PROC usp_insert_supplier
+(
+@SupplierID VARCHAR(255),          
+@SupplierName VARCHAR(255), 
+@ContactNumber VARCHAR(15),
+@Address   VARCHAR(255),
+@OrderHistory TEXT
+)
+AS BEGIN
+INSERT INTO tbl_supplier
+(
+SupplierID,          
+SupplierName, 
+ContactNumber,
+Address,
+OrderHistory
+)
+VALUES
+(
+@SupplierID,          
+@SupplierName, 
+@ContactNumber,
+@Address,
+@OrderHistory
+)
+END
+
+
+---EDIT DATA
+CREATE PROC usp_update_supplier
+(
+@id INT,
+@SupplierID VARCHAR(255),          
+@SupplierName VARCHAR(255), 
+@ContactNumber VARCHAR(15),
+@Address   VARCHAR(255),
+@OrderHistory TEXT
+)
+AS BEGIN
+UPDATE tbl_supplier SET
+SupplierID=@SupplierID,          
+SupplierName=@SupplierName, 
+ContactNumber=@ContactNumber,
+Address=@Address,
+OrderHistory=@OrderHistory
+WHERE id=@id
+END
+
+--DELETE DATA
+
+CREATE PROC sp_delete_supplier
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_supplier WHERE id=@id
+END
+
+
+---VIEW ALL DATA
+CREATE PROC sp_vwall_supplier
+AS BEGIN
+SELECT * FROM tbl_supplier
+END
+
+
+---GET ONE DATA
+CREATE PROC sp_getone_supplier
+(
+@id INT 
+)
+AS BEGIN
+SELECT * FROM tbl_supplier WHERE id=@id
+END
+
+---SEARCH DATA
+CREATE PROC sp_search_supplier
+(
+@Searchdata varchar(100)
+)
+AS BEGIN 
+SELECT * FROM tbl_supplier
+WHERE 
+SupplierID LIKE '%' +@Searchdata+ '%' OR          
+SupplierName LIKE '%' +@Searchdata+ '%' OR 
+ContactNumber LIKE '%' +@Searchdata+ '%' OR
+Address LIKE '%' +@Searchdata+ '%' OR
+OrderHistory LIKE '%' +@Searchdata+ '%';
+END
+
+--------------------------------------------------------------
+  ---2.Inventory Management
+-----------------------------------------------------------------
+
+
+CREATE TABLE tbl_inventory
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+InventoryID VARCHAR(100),  
+FruitType VARCHAR(50),
+Quantity INT,
+PreservationStatus VARCHAR(50),
+ExpirationDate DATE    
+)
+
+
+--------------------------------------------------------------------
+ ---- STORED PROCEDURE FOR tbl_inventory
+ -------------------------------------------------------------
+
+ ---INSERT DATA
+
+
+CREATE PROC sp_insert_inventory
+(
+@InventoryID VARCHAR(100),  
+@FruitType VARCHAR(50),
+@Quantity INT,
+@PreservationStatus VARCHAR(50),
+@ExpirationDate DATE    
+)
+AS BEGIN
+INSERT INTO tbl_inventory
+(
+InventoryID,  
+FruitType,
+Quantity,
+PreservationStatus,
+ExpirationDate    
+)
+VALUES
+(
+@InventoryID,  
+@FruitType,
+@Quantity,
+@PreservationStatus,
+@ExpirationDate    
+)
+END
+
+--EDIT DATA
+
+
+CREATE PROC sp_update_inventory
+(
+@id INT,
+@InventoryID VARCHAR(100),  
+@FruitType VARCHAR(50),
+@Quantity INT,
+@PreservationStatus VARCHAR(50),
+@ExpirationDate DATE    
+)
+AS BEGIN
+UPDATE tbl_inventory SET
+InventoryID=@InventoryID,  
+FruitType=@FruitType,
+Quantity=@Quantity,
+PreservationStatus=@PreservationStatus,
+ExpirationDate=@ExpirationDate    
+WHERE id=@id
+END
+
+
+---DELETE DATA
+
+CREATE PROC sp_delete_inventory
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_inventory WHERE id=@id
+END
+
+--VIEW ALL DATA
+
+CREATE PROC sp_vwall_inventory
+AS BEGIN
+SELECT * FROM tbl_inventory
+END
+
+-- GET ONE DATA
+
+CREATE PROC sp_getone_inventory
+(
+@id INT 
+)
+AS BEGIN
+SELECT * FROM tbl_inventory WHERE id=@id
+END
+
+--SEARCH DATA
+
+CREATE PROC sp_search_inventory
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN 
+SELECT * FROM tbl_inventory
+WHERE 
+InventoryID LIKE '%' +@Searchdata+ '%' OR  
+FruitType LIKE '%' +@Searchdata+ '%' OR
+Quantity LIKE '%' +@Searchdata+ '%' OR
+PreservationStatus LIKE '%' +@Searchdata+ '%' OR
+ExpirationDate LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+----------------------------------------------------------------------
+  -----3. Production Management
+----------------------------------------------------------------
+
+CREATE TABLE tbl_production
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+ProductionID VARCHAR(100),
+FruitType VARCHAR(50),
+ProcessingStage VARCHAR(50),
+PackagingDate DATE 
+)
+
+---------------------------------------------------------------
+ --STORED PROCEDURE
+ --------------------------------------------------------
+
+ --INSERT DATA
+
+CREATE PROC sp_insert_production
+(
+@ProductionID VARCHAR(100),
+@FruitType VARCHAR(50),
+@ProcessingStage VARCHAR(50),
+@PackagingDate DATE 
+)
+AS BEGIN
+INSERT INTO tbl_production
+(
+ProductionID,
+FruitType,
+ProcessingStage,
+PackagingDate 
+)
+VALUES
+(
+@ProductionID,
+@FruitType,
+@ProcessingStage,
+@PackagingDate 
+)
+END
+
+--EDIT DATA
+CREATE PROC sp_update_production
+(
+@id INT,
+@ProductionID VARCHAR(100),
+@FruitType VARCHAR(50),
+@ProcessingStage VARCHAR(50),
+@PackagingDate DATE 
+)
+AS BEGIN
+UPDATE tbl_production SET
+ProductionID=@ProductionID,
+FruitType=@FruitType,
+ProcessingStage=@ProcessingStage,
+PackagingDate=@PackagingDate 
+WHERE id=@id
+END
+
+
+---DELETE DATA
+CREATE PROC sp_delete_production
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_production WHERE id=@id
+END
+
+--VIEW ALL DATA
+CREATE PROC sp_vwall_production
+AS BEGIN
+SELECT * FROM tbl_production
+END
+
+-- VIEW GET ONE DATA
+CREATE PROC sp_getone_production
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_production WHERE id =@id
+END
+
+--SEARCH DATA
+
+CREATE PROC sp_search_production
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_production WHERE
+ProductionID LIKE '%' +@Searchdata+ '%' OR
+FruitType LIKE '%' +@Searchdata+ '%' OR
+ProcessingStage LIKE '%' +@Searchdata+ '%' OR
+PackagingDate LIKE '%' +@Searchdata+ '%';
+END
+
+---------------------------------------------------------------------------------------------------------
+  ------4.Sales Management
+---------------------------------------------------------------------
+CREATE TABLE tbl_sales
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+SaleID VARCHAR(100),
+CustomerID Varchar(100),
+FruitType VARCHAR(50),
+Quantity INT,
+SaleDate DATE,
+Revenue DECIMAL(10, 2)
+)
+
+---------------------------------------------------------------
+---STORED PROCEDURE FOR tbl_sales
+-----------------------------------------------------------
+
+--INSERT DATA
+CREATE PROC sp_insert_sales
+(
+@SaleID VARCHAR(100),
+@CustomerID Varchar(100),
+@FruitType VARCHAR(50),
+@Quantity INT,
+@SaleDate DATE,
+@Revenue DECIMAL(10, 2)
+)
+AS BEGIN
+INSERT INTO tbl_sales
+(
+SaleID,
+CustomerID,
+FruitType,
+Quantity,
+SaleDate,
+Revenue 
+)
+VALUES
+(
+@SaleID,
+@CustomerID,
+@FruitType,
+@Quantity,
+@SaleDate,
+@Revenue 
+)
+END
+
+
+--EDIT DATA
+CREATE PROC sp_update_sales
+(
+@id INT,
+@SaleID VARCHAR(100),
+@CustomerID Varchar(100),
+@FruitType VARCHAR(50),
+@Quantity INT,
+@SaleDate DATE,
+@Revenue DECIMAL(10, 2)
+)
+AS BEGIN
+UPDATE tbl_sales SET
+SaleID=@SaleID,
+CustomerID=@CustomerID,
+FruitType=@FruitType,
+Quantity=@Quantity,
+SaleDate=@SaleDate,
+Revenue=@Revenue 
+WHERE id=@id
+END
+
+
+---DELETE DATA
+
+CREATE PROC sp_delete_sales
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_sales WHERE id=@id
+END
+
+
+--VIEW ALL DATA
+CREATE PROC sp_vwall_sales
+AS BEGIN 
+SELECT * FROM tbl_sales
+END
+
+
+--VIEW ONE  DATA
+CREATE PROC sp_vwone_sales
+(
+@id INT
+)
+AS BEGIN 
+SELECT * FROM tbl_sales WHERE id=@id
+END
+
+
+--SEARCH DATA
+
+CREATE PROC sp_search_sales
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN 
+SELECT * FROM tbl_sales WHERE 
+SaleID LIKE '%' +@Searchdata+ '%' OR
+CustomerID LIKE '%' +@Searchdata+ '%' OR
+FruitType LIKE '%' +@Searchdata+ '%' OR
+Quantity LIKE '%' +@Searchdata+ '%' OR
+SaleDate LIKE '%' +@Searchdata+ '%' OR
+Revenue LIKE '%' +@Searchdata+ '%';
+END
+
+
+-----------------------------------------------------------------------------
+ --5.Customer Management
+------------------------------------------------------------------
+
+CREATE TABLE tbl_customer
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+CustomerID VARCHAR(100),
+CustomerName VARCHAR(255),
+ContactNumber VARCHAR(15),
+Email  VARCHAR(255),
+Address VARCHAR(255)
+)
+
+
+-------------------------------------------------------------
+--	STORED PROCEDURE FOR tbl_customer
+-----------------------------------------------------------------
+
+--INSERT DATA
+
+CREATE PROC usp_insert_customer
+(
+@CustomerID VARCHAR(100),
+@CustomerName VARCHAR(255),
+@ContactNumber VARCHAR(15),
+@Email  VARCHAR(255),
+@Address VARCHAR(255)
+)
+AS BEGIN 
+INSERT INTO tbl_customer
+(
+CustomerID,
+CustomerName,
+ContactNumber,
+Email,
+Address
+)
+VALUES
+(
+@CustomerID,
+@CustomerName,
+@ContactNumber,
+@Email,
+@Address
+)
+END
+
+--EDIT DATA
+CREATE PROC usp_update_customer
+(
+@id INT,
+@CustomerID VARCHAR(100),
+@CustomerName VARCHAR(255),
+@ContactNumber VARCHAR(15),
+@Email  VARCHAR(255),
+@Address VARCHAR(255)
+)
+AS BEGIN 
+UPDATE tbl_customer SET
+CustomerID=@CustomerID,
+CustomerName=@CustomerName,
+ContactNumber=@ContactNumber,
+Email=@Email,
+Address=@Address
+WHERE id=@id
+END
+
+-- DELETE DATA
+CREATE PROC usp_delete_customer
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_customer WHERE id=@id
+END
+
+--VIEW ALL DATA
+CREATE PROC usp_vwall_customer
+AS BEGIN
+SELECT* FROM tbl_customer
+END
+
+--VIEW ONE DATa
+CREATE PROC usp_vwone_customer
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_customer WHERE id=@id
+END
+
+--SEARCH DATA
+CREATE PROC usp_search_customer
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT* FROM tbl_customer WHERE
+CustomerID LIKE '%' +@Searchdata+ '%' OR
+CustomerName LIKE '%' +@Searchdata+ '%' OR
+ContactNumber LIKE '%' +@Searchdata+ '%' OR
+Email LIKE '%' +@Searchdata+ '%' OR
+Address LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+
+------------------------------------------------------------
+  --- 6. Financial Management
+-------------------------------------------------------------
+
+CREATE TABLE tbl_finance
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+TransactionID VARCHAR(100),
+TransactionType VARCHAR(50),
+Amount DECIMAL(10, 2),
+TodayDate  DATE,
+)
+
+-------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_finance
+------------------------------------------------------------------
+
+--INSERT DATA
+CREATE PROC usp_insert_finance
+(
+@TransactionID VARCHAR(100),
+@TransactionType VARCHAR(50),
+@Amount DECIMAL(10, 2),
+@TodayDate  DATE
+)
+AS BEGIN
+INSERT INTO tbl_finance
+(
+TransactionID,
+TransactionType,
+Amount,
+TodayDate
+)
+VALUES
+(
+@TransactionID,
+@TransactionType,
+@Amount,
+@TodayDate
+)
+END
+
+
+--EDIT DATA
+CREATE PROC usp_update_finance
+(
+@id INT,
+@TransactionID VARCHAR(100),
+@TransactionType VARCHAR(50),
+@Amount DECIMAL(10, 2),
+@TodayDate  DATE
+)
+AS BEGIN
+UPDATE tbl_finance SET
+TransactionID=@TransactionID,
+TransactionType=@TransactionType,
+Amount=@Amount,
+TodayDate=@TodayDate
+WHERE id=@id
+END
+
+
+---DELETE DATA
+CREATE PROC usp_delete_finance
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_finance WHERE id=@id
+END
+
+--VIEW ALL DATA 
+CREATE PROC usp_vwall_finance
+AS BEGIN
+SELECT * FROM tbl_finance
+END
+
+
+--VIEW ONE SPECIFIC DATA 
+CREATE PROC usp_vwone_finance
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_finance WHERE id=@id
+END
+
+---SEARCH DATA
+CREATE PROC usp_search_finance
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_finance WHERE
+TransactionID LIKE '%' +@Searchdata+ '%' OR
+TransactionType LIKE '%' +@Searchdata+ '%' OR
+Amount LIKE '%' +@Searchdata+ '%' OR
+TodayDate LIKE '%' +@Searchdata+ '%';
+END
+
+
+----------------------------------------------------------------------------
+  ---7.Logistics Management
+------------------------------------------------------------------
+
+CREATE TABLE tbl_Logistics
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+ShipmentID VARCHAR(100),
+FruitType VARCHAR(50),
+Quantity INT,
+Destination VARCHAR(255),
+ShipmentDate DATE,
+DeliveryStatus VARCHAR(50)
+)
+
+
+-------------------------------------------------------------
+  --- STORED PROCEDURE FOR tbl_Logistics
+----------------------------------------------------------------
+
+--INSERT DATA
+CREATE PROC usp_insert_logistics
+(
+@ShipmentID VARCHAR(100),
+@FruitType VARCHAR(50),
+@Quantity INT,
+@Destination VARCHAR(255),
+@ShipmentDate DATE,
+@DeliveryStatus VARCHAR(50)
+)
+AS BEGIN
+INSERT INTO tbl_Logistics
+(
+ShipmentID,
+FruitType,
+Quantity,
+Destination,
+ShipmentDate,
+DeliveryStatus
+)
+VALUES
+(
+@ShipmentID,
+@FruitType,
+@Quantity,
+@Destination,
+@ShipmentDate,
+@DeliveryStatus
+)
+END
+
+--EDIT DATA
+CREATE PROC usp_update_logistics
+(
+@id INT,
+@ShipmentID VARCHAR(100),
+@FruitType VARCHAR(50),
+@Quantity INT,
+@Destination VARCHAR(255),
+@ShipmentDate DATE,
+@DeliveryStatus VARCHAR(50)
+)
+AS BEGIN
+UPDATE tbl_Logistics SET
+
+ShipmentID=@ShipmentID,
+FruitType = @FruitType,
+Quantity =@Quantity,
+Destination = @Destination,
+ShipmentDate = @ShipmentDate, 
+DeliveryStatus= @DeliveryStatus
+WHERE id=@id
+END
+
+
+--DELETE DATA
+CREATE PROC usp_delete_Logistics
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_Logistics WHERE id=@id
+END
+
+---VIEW ALL DATA
+CREATE PROC usp_vwall_Logistics
+AS BEGIN
+SELECT * FROM tbl_Logistics
+END
+
+--VIEW ONE DATA
+CREATE PROC usp_vwone_Logistics
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Logistics WHERE id=@id
+END
+
+--SEARCH DATA
+CREATE PROC usp_search_Logistics
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_Logistics WHERE
+ShipmentID LIKE '%' +@Searchdata+ '%' OR
+FruitType  LIKE '%' +@Searchdata+ '%' OR
+Quantity  LIKE '%' +@Searchdata+ '%' OR
+Destination  LIKE '%' +@Searchdata+ '%' OR
+ShipmentDate  LIKE '%' +@Searchdata+ '%' OR
+DeliveryStatus  LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+------------------------------------------------------------------
+---8.Quality Control
+--------------------------------------------------------------
+
+CREATE TABLE tbl_Quality
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+QualityCheckID VARCHAR(100),
+ProductionID VARCHAR(100),
+InspectionDate DATE,
+InspectorName VARCHAR(255),
+InspectionOutcome VARCHAR(50),
+Comments TEXT
+)
+
+---------------------------------------------------------------
+  --- STORED PROCEDURE FOR tbl_Quality
+---------------------------------------------------------------
+-- INSERT DATA
+CREATE PROC usp_insert_Quality
+(
+@QualityCheckID VARCHAR(100),
+@ProductionID VARCHAR(100),
+@InspectionDate DATE,
+@InspectorName VARCHAR(255),
+@InspectionOutcome VARCHAR(50),
+@Comments TEXT
+)
+AS BEGIN
+INSERT INTO tbl_Quality
+(
+QualityCheckID,
+ProductionID ,
+InspectionDate,
+InspectorName,
+InspectionOutcome,
+Comments
+)
+VALUES
+(
+@QualityCheckID,
+@ProductionID ,
+@InspectionDate,
+@InspectorName,
+@InspectionOutcome,
+@Comments
+)
+END
+
+
+--EDIT DATA
+CREATE PROC usp_update_Quality
+(
+@id INT,
+@QualityCheckID VARCHAR(100),
+@ProductionID VARCHAR(100),
+@InspectionDate DATE,
+@InspectorName VARCHAR(255),
+@InspectionOutcome VARCHAR(50),
+@Comments TEXT
+)
+AS BEGIN
+UPDATE tbl_Quality SET
+QualityCheckID=@QualityCheckID,
+ProductionID=@ProductionID,
+InspectionDate=@InspectionDate,
+InspectorName=@InspectorName,
+InspectionOutcome=@InspectionOutcome,
+Comments=@Comments
+WHERE id=@id
+END
+
+---DELETE DATA
+CREATE PROC usp_delete_Quality
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_Quality WHERE id=@id
+END
+
+--VIEW ALL DATA
+CREATE PROC usp_vwall_Quality
+AS BEGIN
+SELECT * FROM tbl_Quality
+END
+
+-- VIEW ONE DATA
+CREATE PROC usp_vwone_Quality
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Quality WHERE id=@id
+END
+
+--SEARCH DATA
+CREATE PROC usp_search_Quality
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT* FROM tbl_Quality WHERE 
+QualityCheckID LIKE '%'+@Searchdata+ '%' OR
+ProductionID LIKE '%'+@Searchdata+ '%' OR
+InspectionDate LIKE '%'+@Searchdata+ '%' OR
+InspectorName LIKE '%'+@Searchdata+ '%' OR
+InspectionOutcome LIKE '%'+@Searchdata+ '%' OR
+Comments LIKE '%'+@Searchdata+ '%';
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------
+ ---9.Marketing Management
+ ----------------------------------------------------------
+
+CREATE TABLE tbl_marketing
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+CampaignID VARCHAR(100),
+CampaignName VARCHAR(255),
+StartDate DATE,
+EndDate DATE,
+Budget DECIMAL(10, 2),
+Outcome VARCHAR(50)
+)
+
+-------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_marketing
+------------------------------------------------------------
+
+--INSERT DATA
+CREATE PROC usp_insert_marketing
+(
+@CampaignID VARCHAR(100),
+@CampaignName VARCHAR(255),
+@StartDate DATE,
+@EndDate DATE,
+@Budget DECIMAL(10, 2),
+@Outcome VARCHAR(50)
+)
+AS BEGIN
+INSERT INTO tbl_marketing
+(
+CampaignID,
+CampaignName,
+StartDate,
+EndDate,
+Budget,
+Outcome
+)
+VALUES
+(
+@CampaignID,
+@CampaignName,
+@StartDate,
+@EndDate,
+@Budget,
+@Outcome
+)
+END
+
+---EDIT DATA
+CREATE PROC usp_update_marketing
+(
+@id INT,
+@CampaignID VARCHAR(100),
+@CampaignName VARCHAR(255),
+@StartDate DATE,
+@EndDate DATE,
+@Budget DECIMAL(10, 2),
+@Outcome VARCHAR(50)
+)
+AS BEGIN
+UPDATE tbl_marketing SET
+CampaignID=@CampaignID,
+CampaignName=@CampaignName,
+StartDate=@StartDate,
+EndDate=@EndDate,
+Budget=@Budget,
+Outcome=@Outcome
+WHERE id=@id
+END
+
+--DELETE DATA
+CREATE PROC usp_delete_marketing
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_marketing WHERE id=@id
+END
+
+-- VIEW ALL DATA 
+CREATE PROC usp_vwall_marketing
+AS BEGIN
+SELECT * FROM tbl_marketing
+END
+
+-- VIEW ONE DATA
+CREATE PROC usp_vwone_marketing
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_marketing WHERE id=@id
+END
+
+
+-- SEARCH DATA
+CREATE PROC usp_search_marketing
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_marketing WHERE
+CampaignID LIKE '%' +@Searchdata+ '%' OR
+CampaignName LIKE '%' +@Searchdata+ '%' OR
+StartDate LIKE '%' +@Searchdata+ '%' OR
+EndDate LIKE '%' +@Searchdata+ '%' OR
+Budget LIKE '%' +@Searchdata+ '%' OR
+Outcome LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+----10.Human Resources Management
+--------------------------------------------------------------
+
+CREATE TABLE tbl_HResources
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+EmployeeID VARCHAR(100),
+EmployeeName  VARCHAR(255),
+Position  VARCHAR(50),
+HireDate DATE,
+Salary  DECIMAL(10, 2),
+PerformanceRating VARCHAR(50),
+Attendance  TEXT
+)
+
+
+----------------------------------------------------------------
+-- STROED PROCEDUTE FOR tbl_HResources
+----------------------------------------------------------------
+
+--INSERT DATA
+CREATE PROC usp_insert_HResource
+(
+@EmployeeID VARCHAR(100),
+@EmployeeName  VARCHAR(255),
+@Position  VARCHAR(50),
+@HireDate DATE,
+@Salary  DECIMAL(10, 2),
+@PerformanceRating VARCHAR(50),
+@Attendance  TEXT
+)
+AS BEGIN
+INSERT INTO tbl_HResources
+(
+EmployeeID,
+EmployeeName,
+Position,
+HireDate,
+Salary,
+PerformanceRating,
+Attendance
+)
+VALUES
+(
+@EmployeeID,
+@EmployeeName,
+@Position,
+@HireDate,
+@Salary,
+@PerformanceRating,
+@Attendance
+)
+END
+
+---EDIT DATA
+CREATE PROC usp_update_HResource
+(
+@id INT,
+@EmployeeID VARCHAR(100),
+@EmployeeName  VARCHAR(255),
+@Position  VARCHAR(50),
+@HireDate DATE,
+@Salary  DECIMAL(10, 2),
+@PerformanceRating VARCHAR(50),
+@Attendance  TEXT
+)
+AS BEGIN
+UPDATE tbl_HResources SET
+EmployeeID=@EmployeeID,
+EmployeeName=@EmployeeName,
+Position=@Position,
+HireDate=@HireDate,
+Salary=@Salary,
+PerformanceRating=@PerformanceRating,
+Attendance=@Attendance
+WHERE id=@id
+END
+
+
+
+--DELETE DATA
+CREATE PROC usp_delete_HResource
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_HResources WHERE id=@id
+END
+
+
+-- VIEW ALL DATA
+CREATE PROC usp_vwall_HResource
+AS BEGIN
+SELECT * FROM tbl_HResources
+END
+
+-- VIEW ONE DATA
+CREATE PROC usp_vwone_HResource
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_HResources WHERE id=@id
+END
+
+--SEARCH DATA
+CREATE PROC usp_search_HResource
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_HResources WHERE
+EmployeeID LIKE '%' +@Searchdata+ '%' OR
+EmployeeName LIKE '%' +@Searchdata+ '%' OR
+Position LIKE '%' +@Searchdata+ '%' OR
+HireDate LIKE '%' +@Searchdata+ '%' OR
+Salary LIKE '%' +@Searchdata+ '%' OR
+PerformanceRating LIKE '%' +@Searchdata+ '%' OR
+Attendance LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+--- 11.Supplier Relationship Management
+--------------------------------------------------------------
+
+CREATE TABLE tbl_SRelation
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+SupplierEngagementID VARCHAR(100),
+SupplierID VARCHAR(100),
+EngagementDate DATE,
+EngagementType VARCHAR(50),
+Notes TEXT
+)
+
+
+----------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_SRelation
+----------------------------------------------------------------
+
+-- INSERT DATA
+CREATE PROC usp_insert_SRelation
+(
+@SupplierEngagementID VARCHAR(100),
+@SupplierID VARCHAR(100),
+@EngagementDate DATE,
+@EngagementType VARCHAR(50),
+@Notes TEXT
+)
+AS BEGIN
+INSERT INTO tbl_SRelation
+(
+SupplierEngagementID,
+SupplierID,
+EngagementDate,
+EngagementType,
+Notes
+)
+VALUES
+(
+@SupplierEngagementID,
+@SupplierID,
+@EngagementDate,
+@EngagementType,
+@Notes
+)
+END
+
+-- EDIT DATA
+
+CREATE PROC usp_update_SRelation
+(
+@id INT,
+@SupplierEngagementID VARCHAR(100),
+@SupplierID VARCHAR(100),
+@EngagementDate DATE,
+@EngagementType VARCHAR(50),
+@Notes TEXT
+)
+AS BEGIN
+UPDATE tbl_SRelation SET
+SupplierEngagementID=@SupplierEngagementID,
+SupplierID=@SupplierID,
+EngagementDate=@EngagementDate,
+EngagementType=@EngagementType,
+Notes=@Notes
+WHERE id=@id
+END
+
+
+-- DELETE DATA
+CREATE PROC usp_delete_SRelation
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_SRelation WHERE id=@id
+END
+
+--VIEW ALL DATA
+CREATE PROC usp_vwall_SRelation
+AS BEGIN
+SELECT * FROM tbl_SRelation 
+END
+
+
+-- VIEW INE DATA
+CREATE PROC usp_vwone_SRelation
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_SRelation WHERE id=@id
+END
+
+
+-- SEARCH  DATA
+CREATE PROC usp_search_SRelation
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_SRelation WHERE
+SupplierEngagementID LIKE '%' +@Searchdata+ '%' OR
+SupplierID  LIKE '%' +@Searchdata+ '%' OR
+EngagementDate  LIKE '%' +@Searchdata+ '%' OR
+EngagementType  LIKE '%' +@Searchdata+ '%' OR
+Notes  LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+
+
+-------------------------------------------------------------------
+---12.E-commerce Integration
+------------------------------------------------------------------
+
+
+
+
+CREATE TABLE tbl_ECommerce
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+OnlineOrderID VARCHAR(100),
+CustomerID VARCHAR(100),
+FruitType VARCHAR(50),
+Quantity INT,
+OrderDate DATE,
+PaymentStatus VARCHAR(50)
+)
+
+
+-------------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_ECommerce
+-------------------------------------------------------------------
+
+-- INSERT DATA
+CREATE PROC usp_insert_ECommerce
+(
+@OnlineOrderID VARCHAR(100),
+@CustomerID VARCHAR(100),
+@FruitType VARCHAR(50),
+@Quantity INT,
+@OrderDate DATE,
+@PaymentStatus VARCHAR(50)
+)
+AS BEGIN 
+INSERT INTO tbl_ECommerce 
+(
+OnlineOrderID,
+CustomerID,
+FruitType,
+Quantity,
+OrderDate,
+PaymentStatus 
+)
+VALUES
+(
+@OnlineOrderID,
+@CustomerID,
+@FruitType,
+@Quantity,
+@OrderDate,
+@PaymentStatus 
+)
+END
+
+---EDIT DATA
+CREATE PROC usp_update_ECommerce
+(
+@id INT,
+@OnlineOrderID VARCHAR(100),
+@CustomerID VARCHAR(100),
+@FruitType VARCHAR(50),
+@Quantity INT,
+@OrderDate DATE,
+@PaymentStatus VARCHAR(50)
+)
+AS BEGIN 
+UPDATE tbl_ECommerce SET
+OnlineOrderID=@OnlineOrderID,
+CustomerID=@CustomerID,
+FruitType=@FruitType,
+Quantity=@Quantity,
+OrderDate=@OrderDate,
+PaymentStatus=@PaymentStatus 
+ WHERE id=@id
+END
+
+--- DELETE DATA
+
+CREATE PROC usp_delete_ECommerce
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_ECommerce WHERE id=@id
+END
+
+-- VIEW ALL DATA
+CREATE PROC usp_vwall_ECommerce
+AS BEGIN
+SELECT * FROM tbl_ECommerce
+END
+
+
+
+--- VIEW ONE DATA 
+CREATE PROC usp_vwone_ECommerce
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_ECommerce WHERE id=@id
+END
+
+
+-- SEARCH DATA
+CREATE PROC usp_search_ECommerce
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_ECommerce WHERE
+OnlineOrderID LIKE '%' +@Searchdata+ '%' OR
+CustomerID  LIKE '%' +@Searchdata+ '%' OR
+FruitType  LIKE '%' +@Searchdata+ '%' OR
+Quantity  LIKE '%' +@Searchdata+ '%' OR
+OrderDate  LIKE '%' +@Searchdata+ '%' OR
+PaymentStatus  LIKE '%' +@Searchdata+ '%';
+END
+
+
+-----------------------------------------------------------------
+---13.Customer Support
+-----------------------------------------------------------------
+
+CREATE TABLE tbl_csupport
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+SupportTicketID VARCHAR(100),
+CustomerID  VARCHAR(100),
+IssueDescription  TEXT,
+ResolutionStatus VARCHAR(50),
+ResolutionDate DATE
+)
+
+
+-------------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_csupport
+--------------------------------------------------------------------
+
+--- INSERT DATA
+CREATE PROC usp_insert_csupport
+(
+@SupportTicketID VARCHAR(100),
+@CustomerID  VARCHAR(100),
+@IssueDescription  TEXT,
+@ResolutionStatus VARCHAR(50),
+@ResolutionDate DATE
+)
+AS BEGIN
+INSERT INTO tbl_csupport
+(
+SupportTicketID,
+CustomerID,
+IssueDescription,
+ResolutionStatus,
+ResolutionDate
+)
+VALUES
+(
+@SupportTicketID,
+@CustomerID,
+@IssueDescription,
+@ResolutionStatus,
+@ResolutionDate
+)
+END
+
+
+---- EDIT DATA
+CREATE PROC usp_update_csupport
+(
+@id INT,
+@SupportTicketID VARCHAR(100),
+@CustomerID  VARCHAR(100),
+@IssueDescription  TEXT,
+@ResolutionStatus VARCHAR(50),
+@ResolutionDate DATE
+)
+AS BEGIN
+UPDATE tbl_csupport SET
+SupportTicketID=@SupportTicketID,
+CustomerID=@CustomerID,
+IssueDescription=@IssueDescription,
+ResolutionStatus=@ResolutionStatus,
+ResolutionDate=@ResolutionDate
+WHERE id=@id
+END
+
+---DELETE DATA
+CREATE PROC usp_delete_csupport
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_csupport WHERE id=@id
+END
+
+
+-- VIEW ALL DATA
+CREATE PROC usp_vwall_csupport
+AS BEGIN
+SELECT * FROM tbl_csupport 
+END
+
+-- VIEW ONE DATA
+CREATE PROC usp_vwone_csupport
+(
+@id INT 
+)
+AS BEGIN
+SELECT * FROM tbl_csupport WHERE id=@id
+END
+
+
+---SEARCH DATA
+CREATE PROC usp_search_csupport
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_csupport WHERE 
+SupportTicketID LIKE '%' +@Searchdata+ '%' OR
+CustomerID LIKE '%' +@Searchdata+ '%' OR
+IssueDescription LIKE '%' +@Searchdata+ '%' OR
+ResolutionStatus LIKE '%' +@Searchdata+ '%' OR
+ResolutionDate LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+
+-------------------------------------------------------------
+---14.Research and Development
+-----------------------------------------------------------------------
+
+CREATE TABLE tbl_Research
+(
+id INT IDENTITY(1,1) PRIMARY KEY,
+RnDProjectID VARCHAR(100),
+ProjectName VARCHAR(255),
+StartDate DATE,
+EndDate DATE,
+ProjectStatus VARCHAR(50),
+Notes TEXT
+)
+
+
+-------------------------------------------------------------
+  -- STORED PROCEDURE FOR tbl_Research
+-----------------------------------------------------------------
+
+
+--- INSERT DATA
+
+CREATE PROC usp_insert_Research
+(
+@RnDProjectID VARCHAR(100),
+@ProjectName VARCHAR(255),
+@StartDate DATE,
+@EndDate DATE,
+@ProjectStatus VARCHAR(50),
+@Notes TEXT
+)
+AS BEGIN
+INSERT INTO tbl_Research
+(
+RnDProjectID,
+ProjectName,
+StartDate,
+EndDate,
+ProjectStatus,
+Notes
+)
+VALUES
+(
+@RnDProjectID,
+@ProjectName,
+@StartDate,
+@EndDate,
+@ProjectStatus,
+@Notes
+)
+END
+
+-- EDIT DATA
+CREATE PROC usp_update_Research
+(
+@id INT,
+@RnDProjectID VARCHAR(100),
+@ProjectName VARCHAR(255),
+@StartDate DATE,
+@EndDate DATE,
+@ProjectStatus VARCHAR(50),
+@Notes TEXT
+)
+AS BEGIN
+UPDATE tbl_Research  SET
+RnDProjectID=@RnDProjectID,
+ProjectName=@ProjectName,
+StartDate=@StartDate,
+EndDate=@EndDate,
+ProjectStatus=@ProjectStatus,
+Notes=@Notes
+ WHERE id=@id
+END
+
+--- DELETE DATA
+CREATE PROC usp_delete_Research
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_Research WHERE id=@id
+END
+
+-- VIEW ALL DATA
+CREATE PROC usp_vwall_Research
+AS BEGIN
+SELECT * FROM tbl_Research
+END
+
+
+--VIEW ONE DATA
+CREATE PROC usp_vwone_Research
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Research WHERE id =@id
+END
+
+-- SEARCH DATA
+
+CREATE PROC usp_search_Research
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_Research WHERE 
+RnDProjectID LIKE '%' +@Searchdata+ '%' OR
+ProjectName LIKE '%' +@Searchdata+ '%' OR
+StartDate LIKE '%' +@Searchdata+ '%' OR
+EndDate LIKE '%' +@Searchdata+ '%' OR
+ProjectStatus LIKE '%' +@Searchdata+ '%' OR
+Notes LIKE '%' +@Searchdata+ '%';
+END
+--------------------------------------------------------------
+------15.Environmental Management
+---------------------------------------------------------------------
+
+CREATE TABLE tbl_Environment
+(
+id INT IDENTITY(1,1)PRIMARY KEY,
+SustainabilityPracticeID  VARCHAR(100),
+PracticeDescription TEXT,
+ImplementationDate DATE,
+Impact VARCHAR(255)
+)
+
+
+-----------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_Environment
+----------------------------------------------------------------
+
+--INSERT DATA
+CREATE PROC usp_insert_Environment
+(
+@SustainabilityPracticeID  VARCHAR(100),
+@PracticeDescription TEXT,
+@ImplementationDate DATE,
+@Impact VARCHAR(255)
+)
+AS BEGIN
+INSERT INTO tbl_Environment
+(
+SustainabilityPracticeID,
+PracticeDescription,
+ImplementationDate,
+Impact
+)
+VALUES
+(
+@SustainabilityPracticeID,
+@PracticeDescription,
+@ImplementationDate,
+@Impact
+)
+END
+
+
+-- EDIT DATA
+
+CREATE PROC usp_update_Environment
+(
+@id INT,
+@SustainabilityPracticeID  VARCHAR(100),
+@PracticeDescription TEXT,
+@ImplementationDate DATE,
+@Impact VARCHAR(255)
+)
+AS BEGIN
+UPDATE tbl_Environment SET
+SustainabilityPracticeID=@SustainabilityPracticeID,
+PracticeDescription=@PracticeDescription,
+ImplementationDate=@ImplementationDate,
+Impact=@Impact
+WHERE id=@id
+END
+
+
+-- DELETE DATA
+CREATE PROC usp_delete_Environment
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_Environment WHERE id=@id
+END
+
+--VIEW ALL DATA
+CREATE PROC usp_vwall_Environment
+AS BEGIN
+SELECT * FROM tbl_Environment 
+END
+
+
+--VIEW ONE DATA
+CREATE PROC usp_vwone_Environment
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Environment WHERE id=@id
+END
+
+--- SEARCH DATA
+CREATE PROC usp_search_Environment
+(
+@Searchdata VARCHAR(100)
+)
+AS  BEGIN
+SELECT * FROM tbl_Environment WHERE
+SustainabilityPracticeID LIKE '%' +@Searchdata+ '%' OR
+PracticeDescription LIKE '%' +@Searchdata+ '%' OR
+ImplementationDate LIKE '%' +@Searchdata+ '%' OR
+Impact LIKE '%' +@Searchdata+ '%';
+END
+
+
+
+
+
+
+
+
+----------------------------------------------------------------
+ ----16.Reporting and Analytics
+---------------------------------------------------------------
+
+CREATE TABLE tbl_Report
+(
+id INT IDENTITY(1,1),
+ReportID  VARCHAR(100),
+ReportName VARCHAR(255),
+GeneratedDate DATE,
+ReportType VARCHAR(50),
+DataRange VARCHAR(50),
+GeneratedBy VARCHAR(255),
+Notes TEXT
+)
+
+
+---------------------------------------------------------------------
+--- STORED PROCEDURE FOR tbl_Report
+---------------------------------------------------------------
+-- INSERT DATA
+CREATE PROC usp_insert_Report
+(
+@ReportID  VARCHAR(100),
+@ReportName VARCHAR(255),
+@GeneratedDate DATE,
+@ReportType VARCHAR(50),
+@DataRange VARCHAR(50),
+@GeneratedBy VARCHAR(255),
+@Notes TEXT
+)
+AS BEGIN 
+INSERT INTO tbl_Report
+(
+ReportID,
+ReportName,
+GeneratedDate,
+ReportType,
+DataRange,
+GeneratedBy,
+Notes 
+)
+VALUES
+(
+@ReportID,
+@ReportName,
+@GeneratedDate,
+@ReportType,
+@DataRange,
+@GeneratedBy,
+@Notes 
+)
+END
+
+--- EDIT DATA
+CREATE PROC usp_update_Report
+(
+@id INT,
+@ReportID  VARCHAR(100),
+@ReportName VARCHAR(255),
+@GeneratedDate DATE,
+@ReportType VARCHAR(50),
+@DataRange VARCHAR(50),
+@GeneratedBy VARCHAR(255),
+@Notes TEXT
+)
+AS BEGIN 
+UPDATE tbl_Report SET
+ReportID=@ReportID,
+ReportName=@ReportName,
+GeneratedDate=@GeneratedDate,
+ReportType=@ReportType,
+DataRange=@DataRange,
+GeneratedBy=@GeneratedBy,
+Notes=@Notes 
+WHERE id=@id
+END
+
+---DELETE DATA
+CREATE PROC usp_delete_Report
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_Report WHERE id=@id
+END
+
+-- VIEW ALL DATA
+CREATE PROC usp_vwall_Report
+AS BEGIN
+SELECT * FROM tbl_Report
+END
+
+-- VIEW ONE DATA
+CREATE PROC usp_vwone_Report
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Report WHERE id=@id
+END
+
+-- SEARCH DATA
+CREATE PROC usp_search_Report
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN 
+SELECT * FROM tbl_Report  WHERE 
+ReportID LIKE '%' +@Searchdata+ '%' OR
+ReportName LIKE '%' +@Searchdata+ '%' OR
+GeneratedDate LIKE '%' +@Searchdata+ '%' OR
+ReportType LIKE '%' +@Searchdata+ '%' OR
+DataRange LIKE '%' +@Searchdata+ '%' OR
+GeneratedBy LIKE '%' +@Searchdata+ '%' OR
+Notes LIKE '%' +@Searchdata+ '%';
+END
+
+
+-------------------------------------------------------------------------
+  --REGISTERATION TABLE
+---------------------------------------------------------------
+
+CREATE TABLE tbl_Register
+(
+id INT IDENTITY(1,1),
+UserID VARCHAR(100),	
+UserName	VARCHAR(100),
+Email	VARCHAR(100),
+PhoneNumber	VARCHAR(15),
+Password	VARCHAR(100),
+CPassword	VARCHAR(100),
+Address	TEXT
+)
+
+ALTER TABLE tbl_Register
+ADD PRIMARY KEY (id);
+
+
+---INSERT DATA
+CREATE PROC usp_insert_Register
+(
+@UserID VARCHAR(100),	
+@UserName	VARCHAR(100),
+@Email	VARCHAR(100),
+@PhoneNumber	VARCHAR(15),
+@Password	VARCHAR(100),
+@CPassword	VARCHAR(100),
+@Address	TEXT
+)
+AS BEGIN
+INSERT INTO tbl_Register
+(
+UserID,	
+UserName,
+Email,
+PhoneNumber,
+Password,
+CPassword,
+Address
+)
+VALUES
+(
+@UserID,	
+@UserName,
+@Email,
+@PhoneNumber,
+@Password,
+@CPassword,
+@Address
+)
+END
+
+---EDIT DATA
+CREATE PROC usp_update_Register
+(
+@id INT,
+@UserID VARCHAR(100),	
+@UserName	VARCHAR(100),
+@Email	VARCHAR(100),
+@PhoneNumber	VARCHAR(15),
+@Password	VARCHAR(100),
+@CPassword	VARCHAR(100),
+@Address	TEXT
+)
+AS BEGIN
+UPDATE tbl_Register SET
+
+UserID=@UserID,	
+UserName=@UserName,
+Email=@Email,
+PhoneNumber=@PhoneNumber,
+Password=@Password,
+CPassword=@CPassword,
+Address=@Address
+WHERE id=@id
+END
+
+
+
+--DELETE DATA
+
+CREATE PROC usp_delete_Register
+(
+@id INT
+)
+AS BEGIN
+DELETE FROM tbl_Register WHERE id=@id
+END
+
+
+--VIEW ALL DATA
+CREATE PROC usp_vwall_Register
+AS BEGIN
+SELECT * FROM tbl_Register
+END
+
+--VIEW GET ONE DATA
+CREATE PROC usp_vwone_Register
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Register WHERE id=@id
+END
+
+---SEARCH DATA
+CREATE PROC usp_search_Register
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_Register WHERE 
+UserID LIKE '%' +@Searchdata+ '%' OR	
+UserName LIKE '%' +@Searchdata+ '%' OR
+Email LIKE '%' +@Searchdata+ '%' OR
+PhoneNumber LIKE '%' +@Searchdata+ '%' OR
+Password LIKE '%' +@Searchdata+ '%' OR
+CPassword LIKE '%' +@Searchdata+ '%' OR
+Address LIKE '%' +@Searchdata+ '%';
+END
+
+
+--CHECK IN LOGIN DATA
+
+ALTER PROC usp_login
+(
+@UserID VARCHAR(100),	
+@UserName	VARCHAR(100),
+@CPassword	VARCHAR(100)
+)
+AS BEGIN
+SELECT * FROM tbl_Register WHERE UserID=@UserID AND
+UserName=@UserName AND
+CPassword=@CPassword
+END
+
+
+
+
+
+
+
+
+ALTER PROC usp_login
+(
+@UserID VARCHAR(100),   
+@UserName VARCHAR(100),
+@CPassword VARCHAR(100)
+)
+AS 
+BEGIN
+    IF EXISTS (SELECT * FROM tbl_Register WHERE UserID = @UserID AND UserName = @UserName AND CPassword = @CPassword)
+    BEGIN
+        RETURN 1 -- Login successful
+    END
+    ELSE
+    BEGIN
+        RETURN 0 -- Login failed
+    END
+END
+
+---------------------------------------------------------------
+---Quick Contact
+-----------------------------------------------------------
+
+CREATE tbl_Contactus
+(
+id INT IDENTITY(1,1)PRIMARY KEY,
+Name VARCHAR(100),
+Email VARCHAR(100),
+Phone VARCHAR(100),
+Message VARCHAR(100)
+);
+
+-- INSERT DATA
+CREATE PROC sp_insert_contactus
+(
+@Name VARCHAR(100),
+@Email VARCHAR(100),
+@Phone VARCHAR(100),
+@Message VARCHAR(100)
+)
+AS BEGIN
+INSERT INTO tbl_Contactus
+(
+Name,
+Email,
+Phone,
+Message 
+)
+VALUES
+(
+@Name,
+@Email,
+@Phone,
+@Message 
+)
+END
+
+
+---UPDATE DATA
+CREATE PROC sp_insert_contactus
+(
+@id INT,
+@Name VARCHAR(100),
+@Email VARCHAR(100),
+@Phone VARCHAR(100),
+@Message VARCHAR(100)
+)
+AS BEGIN
+UPDATE tbl_Contactus SET
+Name=@Name,
+Email=@Email,
+Phone=@Phone,
+Message=@Message 
+WHERE id=@id
+END
+
+
+---DELETE DATA
+CREATE PROC sp_delete_contactus
+(
+@id INT 
+)
+AS BEGIN
+DELETE FROM tbl_Contactus WHERE id=@id
+END
+
+
+
+---VIEW ALL DATA
+CREATE PROC sp_vwall_contactus
+AS BEGIN
+SELECT * FROM tbl_Contactus
+END
+
+
+
+---VIEW ONE DATA
+CREATE PROC sp_vwall_contactus
+(
+@id INT
+)
+AS BEGIN
+SELECT * FROM tbl_Contactus WHERE id=@id
+END
+
+
+
+--SEARCH DATA
+CREATE PROC sp_search_contactus
+(
+@Searchdata VARCHAR(100)
+)
+AS BEGIN
+SELECT* FROM tbl_Contactus WHERE 
+Name LIKE '%' +@Searchdata+ '%' OR
+Email LIKE '%' +@Searchdata+ '%' OR
+Phone LIKE '%' +@Searchdata+ '%' OR
+Message LIKE '%' +@Searchdata+ '%';
+END
